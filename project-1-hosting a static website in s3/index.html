@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radhe's Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="style.css">
+   
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+      <div class="hero-content">
+        <h1 class="animate__animated">Radhe's Portfolio</h1>
+        <p class="animate__animated">
+          Full Stack Developer | MERN Stack | DevOps Enthusiast
+        </p>
+        <button id="explore-btn" class="explore-btn">Explore</button>
+      </div>
+      <canvas id="hero-canvas"></canvas>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+          <div class="about-image">
+            <img src="https://picsum.photos/id/1/300/300" alt="Radhe's Profile Picture" />
+          </div>
+          <div class="about-content">
+            <h2>About Me</h2>
+            <p>
+              Hello! I'm <span>Radhe</span>, a passionate Full Stack Developer with a love for crafting dynamic and responsive web applications. With over <span>5 projects</span> successfully completed using the MERN stack, I have honed my skills in MongoDB, Express, React, and Node.js.
+            </p>
+            <p>
+              My journey into <span class="accent">DevOps</span> has been equally exciting. I am constantly learning and applying my knowledge in building and deploying applications using AWS microservices, creating VPCs, setting up CI/CD pipelines, and more.
+            </p>
+            <p>
+              My ultimate goal is to combine my full stack development expertise with DevOps practices to create scalable, efficient, and innovative solutions. Let's connect and explore how we can work together to bring ideas to life!
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="services-container">
+          <h2>My Services</h2>
+          <div class="service-boxes">
+            <div class="service-box">
+              <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1541233349642-6e425fe6190e" alt="Full Stack Development" />
+              </div>
+              <div class="service-content">
+                <h3>Full Stack Development</h3>
+                <p>Creating responsive and dynamic web applications using the MERN stack (MongoDB, Express, React, Node.js).</p>
+              </div>
+            </div>
+            <div class="service-box">
+              <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="DevOps & AWS" />
+              </div>
+              <div class="service-content">
+                <h3>DevOps & AWS</h3>
+                <p>Building and deploying applications using AWS microservices, VPCs, and CI/CD pipelines.</p>
+              </div>
+            </div>
+            <div class="service-box">
+              <div class="service-image">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97" alt="Consultancy" />
+              </div>
+              <div class="service-content">
+                <h3>Consultancy</h3>
+                <p>Providing expert advice and strategies for implementing full stack development and cloud solutions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="contact-container">
+        <h2 class="animate__animated animate__fadeInDown">Contact Me</h2>
+        <p class="animate__animated animate__fadeInUp">
+          Feel free to reach out to me for any projects or collaborations!
+        </p>
+        <form
+          action="submit_form.php"
+          method="POST"
+          class="animate__animated animate__fadeInUp animate__delay-1s"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              class="animate__animated animate__fadeInLeft"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              class="animate__animated animate__fadeInRight"
+            />
+          </div>
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="Your Message"
+            required
+            class="animate__animated animate__fadeInUp"
+          ></textarea>
+          <button
+            type="submit"
+            class="animate__animated animate__fadeInUp animate__delay-2s"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Radhe's Portfolio. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Parallax Effect for Canvas Background
+      const canvas = document.getElementById("hero-canvas");
+      const ctx = canvas.getContext("2d");
+      const particlesArray = [];
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      window.addEventListener("resize", function () {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+
+      class Particle {
+        constructor(x, y, size, speedX, speedY) {
+          this.x = x;
+          this.y = y;
+          this.size = size;
+          this.speedX = speedX;
+          this.speedY = speedY;
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          if (this.size > 0.2) this.size -= 0.1;
+        }
+
+        draw() {
+          ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        for (let i = 0; i < 100; i++) {
+          const size = Math.random() * 5 + 2;
+          const x = Math.random() * canvas.width;
+          const y = Math.random() * canvas.height;
+          const speedX = Math.random() * 3 - 1.5;
+          const speedY = Math.random() * 3 - 1.5;
+          particlesArray.push(new Particle(x, y, size, speedX, speedY));
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particlesArray.forEach((particle, index) => {
+          particle.update();
+          particle.draw();
+
+          if (particle.size <= 0.2) {
+            particlesArray.splice(index, 1);
+            particlesArray.push(
+              new Particle(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height,
+                Math.random() * 5 + 2,
+                Math.random() * 3 - 1.5,
+                Math.random() * 3 - 1.5
+              )
+            );
+          }
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      init();
+      animate();
+
+      // Scroll to About Section on Button Click
+      document
+        .getElementById("explore-btn")
+        .addEventListener("click", function () {
+          document
+            .getElementById("about")
+            .scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
+  </body>
+</html>
