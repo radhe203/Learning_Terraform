@@ -1,0 +1,22 @@
+
+
+there are many ways to set variables 
+
+1 ). enviroment variables
+2 ). terraform.tfvars
+3 ). *auto.tfvars
+4 ). -var & -var-file
+
+
+------------------------------------------------------------
+those are the ways to set variables
+
+1-> have least prefrence
+4-> have most prefrence
+
+-------------------------------------------------------------
+example : - if we set a normal variables in terraform.tfvars variable & if we set same variable in *auto.tfvars then this have more prefrence.
+            and will be used while executing the terrafoem file
+
+--------------------------------------------------------------
+we can set 4 :-> terrafoem apply -var = 'ec2_config={v_size=20,v_type="gp3"}'
